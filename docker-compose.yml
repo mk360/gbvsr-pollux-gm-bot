@@ -1,0 +1,12 @@
+services:
+  gbvsr-gm-bot:
+    image: gbvsr-gm-bot:latest
+    container_name: gbvsr-gm-bot
+    restart: unless-stopped
+    volumes:
+      - ../gbvsr-gm/jsons:/jsons
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
