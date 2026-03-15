@@ -1,6 +1,10 @@
 services:
   gbvsr-gm-bot:
-    image: gbvsr-gm-bot:latest
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+    env_file:
+      - .env
+    image: pollux_gm_bot:latest
     container_name: gbvsr-gm-bot
     restart: unless-stopped
     volumes:
