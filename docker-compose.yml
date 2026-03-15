@@ -8,7 +8,7 @@ services:
     container_name: gbvsr-gm-bot
     restart: unless-stopped
     volumes:
-      - ../gbvsr-gm/jsons:/jsons
+      - ../gbvsr-gm-watch/jsons:/jsons
     logging:
       driver: json-file
       options:

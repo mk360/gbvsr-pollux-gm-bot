@@ -46,4 +46,4 @@ bot.on(Events.InteractionCreate, (interaction) => {
     }
 });
 
-bot.login(process.env.BOT_TOKEN)
+bot.login(process.env.BOT_TOKEN);
