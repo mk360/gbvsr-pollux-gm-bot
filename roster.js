@@ -76,7 +76,7 @@ const ROSTER = [
     },
     {
         name: "Narmaya",
-        aliases: ["Narm", "narmex"]
+        aliases: ["narmex"]
     },
     {
         name: "Nier"
@@ -107,6 +107,10 @@ const ROSTER = [
         name: "Vaseraga",
     },
     {
+        name: "Vira",
+        aliases: ["plastic"]
+    },
+    {
         name: "Versusia"
     },
     {
@@ -118,7 +122,7 @@ const ROSTER = [
     },
     {
         name: "Yuel",
-        aliases: ["yool"]
+        aliases: ["yool", "creatura"]
     },
     {
         name: "Zeta"
