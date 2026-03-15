@@ -5,7 +5,7 @@ const command = require("./gm-command");
 
 const bot = new Client({
     intents: [
-		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.MessageContent
     ]
 });
 
