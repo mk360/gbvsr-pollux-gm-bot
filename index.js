@@ -27,12 +27,12 @@ bot.on(Events.InteractionCreate, (interaction) => {
             embed.setTitle(`Grand Master Leaderboard for ${foundCharacter}.`);
             embed.setColor(0x419CFF);
             const slugified = foundCharacter.replaceAll(" ", "_").toLowerCase()
-            const flattenedEntries = fetchedLeaderboard.entries.map((entry) => {
+            const flattenedEntries = fetchedLeaderboard.entries.slice(0, 11).map((entry) => {
                 return `\`${entry.Rank} - ${entry.Name} - ${entry.Points} points\``;
             });
             embed.setDescription(flattenedEntries.join("\n"));
             embed.setFooter({
-                text: `Source: https://gm-tracker.com/${slugified}\nLast updated: ${fetchedLeaderboard.timestamp}.`
+                text: `Full Leaderboard: https://gm-tracker.com/${slugified}\nLast updated: ${fetchedLeaderboard.timestamp}.`
             });
             interaction.reply({
                 embeds: [embed]
