@@ -2,6 +2,8 @@ services:
   gbvsr-gm-bot:
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
+      - TZ=Europe/Paris
+    build: .
     env_file:
       - .env
     image: pollux_gm_bot:latest
