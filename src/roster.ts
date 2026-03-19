@@ -139,7 +139,7 @@ const ROSTER = [
 const THRESHOLD = 0.6;
 
 // find nearest match, allowing for fuzzy strings and multiple aliases
-function resolveCharacter(input) {
+function resolveCharacter(input: string) {
     var match = [];
 
     for (let character of ROSTER) {
@@ -168,7 +168,7 @@ function resolveCharacter(input) {
     else return null
 };
 
-function levenshtein(input, target) {
+function levenshtein(input: string, target: string) {
   const m = input.length;
   const n = target.length;
   const dp = Array.from({ length: m + 1 }, (_, i) =>
@@ -188,4 +188,4 @@ function levenshtein(input, target) {
   return dp[m][n];
 }
 
-module.exports = resolveCharacter;
+export default resolveCharacter;

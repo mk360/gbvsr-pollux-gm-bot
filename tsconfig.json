@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "lib": ["ES2022"],
+        "rootDir": "src",
+        "skipLibCheck": true,
+        "outDir": "lib",
+        "strict": false,
+        "noImplicitAny": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "resolveJsonModule": true,
+        "esModuleInterop": true
+    }
+}

@@ -11,4 +11,4 @@ nameArg.setDescription("The character you want the GM ladder of. Standard and EX
 
 characterCommand.addStringOption(nameArg);
 
-module.exports = characterCommand.toJSON();
+export default characterCommand.toJSON();
