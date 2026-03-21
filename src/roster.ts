@@ -79,7 +79,7 @@ const ROSTER = [
     },
     {
         name: "Narmaya",
-        aliases: ["narmex"]
+        aliases: ["narmex", "narumea"]
     },
     {
         name: "Nier"
