@@ -64,7 +64,7 @@ bot.on(Events.InteractionCreate, (interaction) => {
         if (foundCharacter) {
             const fetchedLeaderboard = JSON.parse(fs.readFileSync(`/jsons/${foundCharacter}.json`, "utf-8")) as LeaderboardData;
             const embed = new EmbedBuilder();
-            embed.setTitle(`Grand Master Leaderboard for ${foundCharacter}.`);
+            embed.setTitle(`Grand Master Leaderboard for ${foundCharacter}`);
             if (foundCharacter in ICONS) {
                 embed.setThumbnail(ICONS[foundCharacter as keyof typeof ICONS]);
             }
