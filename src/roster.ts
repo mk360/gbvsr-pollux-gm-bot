@@ -69,6 +69,9 @@ const ROSTER = [
         name: "Lucilius",
     },
     {
+        name: "Lunalu",
+    },
+    {
         name: "Meg"
     },
     {
