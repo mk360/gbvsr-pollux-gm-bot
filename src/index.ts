@@ -3,7 +3,7 @@ import { Client, GatewayIntentBits, Events, REST, Routes, EmbedBuilder, MessageF
 import * as fs from "fs";
 import ICONS from "./icons.json";
 import command from "./gm-command";
-import { createCorrectInputReport, createServerJoinReport, createWrongInputReport, sendAnalytics } from "./analytics";
+import { createCorrectInputReport, createHealthStatusReport, createServerJoinReport, createWrongInputReport, sendAnalytics } from "./analytics";
 
 let inboundCommandRequests = 0;
 
@@ -19,9 +19,11 @@ const bot = new Client({
     ]
 });
 
-bot.on(Events.ClientReady, () => {
+bot.on(Events.ClientReady, (client) => {
     if (bot.user) {
         console.log(bot.user.username + " logged in");
+        const embed = createHealthStatusReport(bot.user.username, new Date().getTime())
+        sendAnalytics(embed);
         const restClient = new REST().setToken(process.env.BOT_TOKEN!);
         restClient.post(Routes.applicationCommands(bot.user!.id), {
             body: command

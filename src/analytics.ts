@@ -66,6 +66,17 @@ export function createServerJoinReport(server: { name: string; image: string }, 
     return embed;
 }
 
+export function createHealthStatusReport(botUsername: string, timestamp: number) {
+    const embed = new EmbedBuilder();
+    embed.setColor(0x419CFF);
+    embed.setDescription(`Bot \`${botUsername}\` is online.`);
+    embed.setFooter({
+        text: `Timestamp: ${new Date(timestamp).toLocaleDateString("fr")} ${new Date(timestamp).toLocaleTimeString("fr")}.`
+    });
+
+    return embed;
+}
+
 export function sendAnalytics(embed: EmbedBuilder) {
     fetch("https://discord.com/api/webhooks/1484298222850674832/TP4YmkobpB7HBB7RSXhOpT5lO9fqYsW4VykxXSnIP3_u0pN6Lm1-h096wxaAnh7ygcs0", {
         method: "POST",
