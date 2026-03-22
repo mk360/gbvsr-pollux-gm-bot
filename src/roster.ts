@@ -26,6 +26,9 @@ const ROSTER = [
         name: "Belial",
     },
     {
+        name: "Cagliostro",
+    },
+    {
         name: "Charlotta",
         aliases: ["lotta", "potat"]
     },
