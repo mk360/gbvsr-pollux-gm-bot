@@ -9,7 +9,7 @@ let inboundCommandRequests = 0;
 
 interface LeaderboardData {
     entries: { Rank: number; Name: string; Points: number }[];
-    timestamp: string;
+    timestamp: number;
 }
 
 const bot = new Client({
@@ -73,10 +73,7 @@ bot.on(Events.InteractionCreate, (interaction) => {
             const flattenedEntries = fetchedLeaderboard.entries.slice(0, 11).map((entry) => {
                 return `\`${entry.Rank} - ${entry.Name} - ${entry.Points} points\``;
             });
-            embed.setDescription(flattenedEntries.join("\n"));
-            embed.setFooter({
-                text: `Full Leaderboard: https://gm-tracker.com/${slugified}\nLast updated: ${fetchedLeaderboard.timestamp}.`
-            });
+            embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp}:f> (local time).\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>).`);
             interaction.reply({
                 embeds: [embed]
             });

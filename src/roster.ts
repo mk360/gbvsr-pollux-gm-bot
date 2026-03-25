@@ -30,7 +30,7 @@ const ROSTER = [
     },
     {
         name: "Charlotta",
-        aliases: ["lotta", "potat"]
+        aliases: ["potat"]
     },
     {
         name: "Djeeta",
