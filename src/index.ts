@@ -80,6 +80,11 @@ bot.on(Events.InteractionCreate, (interaction) => {
                     interaction.reply({
                         embeds: [embed]
                     }).catch((e) => {
+                        const errorEmbed = new EmbedBuilder();
+                        errorEmbed.setColor(0);
+                        errorEmbed.setDescription(`Caught an error while replying to an interaction.`)
+                        errorEmbed.setTimestamp(new Date());
+                        sendAnalytics(errorEmbed);
                         console.log(`[${new Date()}] ${e}`);
                     });
                     const reportEmbed = createCorrectInputReport(val.value!.toString(), foundCharacter, { name: interaction.guild?.name || "Private Messages", image: interaction.guild?.iconURL({
