@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, SlashCommandStringOption } = require("discord.js");
+import { SlashCommandBuilder, SlashCommandStringOption } from "discord.js";
 
 const characterCommand = new SlashCommandBuilder();
 characterCommand.setName("gm");
