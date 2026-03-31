@@ -44,6 +44,7 @@ bot.on(Events.GuildCreate, async (newGuild) => {
 });
 
 process.on("SIGTERM", async () => {
+    console.log("Shutting down...");
     while (inboundCommandRequests > 0) {
         await new Promise((resolve) => {
             setTimeout(() => {

@@ -6,4 +6,4 @@ COPY ./src/ /app/src/
 RUN npm i
 RUN npx tsc
 
-ENTRYPOINT [ "npm", "start" ]
+CMD [ "node", "./lib/index.js" ]
