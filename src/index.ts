@@ -76,7 +76,7 @@ bot.on(Events.InteractionCreate, (interaction) => {
                     const flattenedEntries = fetchedLeaderboard.entries.slice(0, 11).map((entry) => {
                         return `\`${entry.Rank} - ${entry.Name} - ${entry.Points} points\``;
                     });
-                    embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp}:f> (local time).\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>).`);
+                    embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp}:f> (local time).\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>)`);
                     interaction.reply({
                         embeds: [embed]
                     });
