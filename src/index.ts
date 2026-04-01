@@ -65,7 +65,15 @@ bot.on(Events.InteractionCreate, (interaction) => {
                 const val = interaction.options.get("character", true);
                 const foundCharacter = resolveCharacter(val.value!.toString());
                 if (foundCharacter) {
-                    const fetchedLeaderboard = JSON.parse(fs.readFileSync(`/jsons/${foundCharacter}.json`, "utf-8")) as LeaderboardData;
+                    let fetchedLeaderboard: LeaderboardData = {
+                        entries: [],
+                        timestamp: 0
+                    };
+                    try {
+                        fetchedLeaderboard = JSON.parse(fs.readFileSync(`/jsons/${foundCharacter}.json`, "utf-8")) as LeaderboardData;
+                    } catch (e) {
+
+                    }
                     const embed = new EmbedBuilder();
                     embed.setTitle(`Grand Master Leaderboard for ${foundCharacter}`);
                     if (foundCharacter in ICONS) {
@@ -73,12 +81,17 @@ bot.on(Events.InteractionCreate, (interaction) => {
                     }
                     embed.setColor(0x419CFF);
                     const slugified = foundCharacter.replaceAll(" ", "_").toLowerCase();
-                    const flattenedEntries = fetchedLeaderboard.entries.slice(0, 11).map((entry) => {
-                        return `\`${entry.Rank} - ${entry.Name} - ${entry.Points} points\``;
-                    });
-                    embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp}:f>.\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>)`);
+                    if (fetchedLeaderboard.entries.length) {
+                        const flattenedEntries = fetchedLeaderboard.entries.slice(0, 11).map((entry) => {
+                            return `\`${entry.Rank} - ${entry.Name} - ${entry.Points} points\``;
+                        });
+                        embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp}:f>.\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>)`);
+                    } else {
+                        embed.setDescription("No data for this character yet. Please wait for a refresh and try again later.");
+                    }
                     interaction.reply({
-                        embeds: [embed]
+                        embeds: [embed],
+                        flags: fetchedLeaderboard.entries.length ? [] : [MessageFlags.Ephemeral]
                     }).catch((e) => {
                         const errorEmbed = new EmbedBuilder();
                         errorEmbed.setColor(0);
