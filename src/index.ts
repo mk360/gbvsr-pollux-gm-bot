@@ -85,7 +85,8 @@ bot.on(Events.InteractionCreate, (interaction) => {
                         const flattenedEntries = fetchedLeaderboard.entries.slice(0, 11).map((entry) => {
                             return `\`${entry.Rank} - ${entry.Name} - ${entry.Points} points\``;
                         });
-                        embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp}:f>.\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>)`);
+                        console.log(fetchedLeaderboard.timestamp)
+                        embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp / 1000}:f>.\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>)`);
                     } else {
                         embed.setDescription("No data for this character yet. Please wait for a refresh and try again later.");
                     }
