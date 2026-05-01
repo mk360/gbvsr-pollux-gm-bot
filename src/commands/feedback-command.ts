@@ -11,7 +11,7 @@ feedback.setDescription("Write your feedback or your suggestion.");
 
 const includeUsername = new SlashCommandBooleanOption();
 includeUsername.setName("username");
-includeUsername.setDescription("Include your username? Reports are anonymous by default.");
+includeUsername.setDescription("Include your username? This will allow the dev to reach out if needed.");
 
 feedbackCommand.addStringOption(feedback);
 feedbackCommand.addBooleanOption(includeUsername);

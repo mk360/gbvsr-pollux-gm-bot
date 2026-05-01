@@ -1,12 +1,12 @@
 import { EmbedBuilder } from "discord.js";
 
-export function createCorrectInputReport(input: string, character: string, server: { name: string, image: string }, timestamp: number) {
-    const embed = new EmbedBuilder();
-    embed.setTitle("Successful GM Leaderboard request");
-    embed.setColor(0x008000);
-    embed.setThumbnail(server.image);
-    embed.setDescription(`Valid input served.`);
-    embed.addFields([{
+export function createCorrectInputReport(input: string, character: string, server: { name: string, image: string }, timestamp: number, ids: {
+    serverID: string;
+    messageID: string;
+    channelId: string;
+}) {
+    let description = "Valid input served.";
+    const fields = [{
         name: "User input",
         value: `\`${input}\``,
         inline: true,
@@ -18,7 +18,21 @@ export function createCorrectInputReport(input: string, character: string, serve
         name: "Requested in the server",
         value: server.name,
         inline: true,
-    }]);
+    }];
+
+    if (ids.serverID && ids.messageID && ids.channelId) {
+        fields.push({
+            name: " ",
+            value: `[Message link](<https://discord.com/channels/${ids.serverID}/${ids.channelId}/${ids.messageID}>)`,
+            inline: true
+        });
+    }
+    const embed = new EmbedBuilder();
+    embed.setTitle("Successful GM Leaderboard request");
+    embed.setColor(0x008000);
+    embed.setThumbnail(server.image);
+    embed.setDescription("Valid input served.");
+    embed.addFields(fields);
 
     embed.setFooter({
         text: `Request timestamp: ${new Date(timestamp).toLocaleDateString("fr")} ${new Date(timestamp).toLocaleTimeString("fr")}.`,

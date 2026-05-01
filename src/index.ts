@@ -85,7 +85,6 @@ bot.on(Events.InteractionCreate, (interaction) => {
                         const flattenedEntries = fetchedLeaderboard.entries.slice(0, 11).map((entry) => {
                             return `\`${entry.Rank} - ${entry.Name} - ${entry.Points} points\``;
                         });
-                        console.log(fetchedLeaderboard.timestamp)
                         embed.setDescription(flattenedEntries.join("\n") + `\n\n-# Last updated: <t:${fetchedLeaderboard.timestamp / 1000}:f>.\n-# [Full Leaderboard](<https://gm-tracker.com/${slugified}>)`);
                     } else {
                         embed.setDescription("No data for this character yet. Please wait for a refresh and try again later.");
@@ -101,9 +100,16 @@ bot.on(Events.InteractionCreate, (interaction) => {
                         sendAnalytics(errorEmbed);
                         console.log(`[${new Date()}] ${e}`);
                     });
+                    const serverID = interaction.guild?.id;
+                    const messageID = interaction.id;
+                    const channelId = interaction.channel.id;
                     const reportEmbed = createCorrectInputReport(val.value!.toString(), foundCharacter, { name: interaction.guild?.name || "Private Messages", image: interaction.guild?.iconURL({
                         forceStatic: true
-                    }) ?? null }, interaction.createdTimestamp);
+                    }) ?? null }, interaction.createdTimestamp, {
+                        serverID,
+                        messageID,
+                        channelId
+                    });
                     sendAnalytics(reportEmbed);
                 } else {
                     interaction.reply({
@@ -141,6 +147,9 @@ bot.on(Events.InteractionCreate, (interaction) => {
                 const successEmbed = new EmbedBuilder();
                 successEmbed.setColor(0x008800);
                 successEmbed.setTitle("Thank you for your feedback!");
+                if (displayUsername) {
+                    successEmbed.setDescription(`If necessary, <@349940167340982272> will reach out to you.`);
+                }
                 interaction.reply({
                     embeds: [successEmbed],
                     flags: MessageFlags.Ephemeral
