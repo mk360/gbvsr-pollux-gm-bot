@@ -102,7 +102,7 @@ bot.on(Events.InteractionCreate, (interaction) => {
                     });
                     const serverID = interaction.guild?.id;
                     const messageID = interaction.id;
-                    const channelId = interaction.channel.id;
+                    const channelId = interaction.channel?.id;
                     const reportEmbed = createCorrectInputReport(val.value!.toString(), foundCharacter, { name: interaction.guild?.name || "Private Messages", image: interaction.guild?.iconURL({
                         forceStatic: true
                     }) ?? null }, interaction.createdTimestamp, {
